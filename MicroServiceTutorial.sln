@@ -21,11 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared\Sha
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FakePayment", "FakePayment", "{16353FD3-26F8-4D68-961A-1EE916805009}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakePayment", "FakePayment\FakePayment.csproj", "{6996A933-C390-4AF9-BCBB-96167917D3BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakePayment", "FakePayment\FakePayment.csproj", "{6996A933-C390-4AF9-BCBB-96167917D3BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{0088B400-47CB-404D-A2E2-6BEAE8BCB2D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "Gateway\Gateway.csproj", "{DF9C221D-2CEA-43F5-8AB6-6E75440B632D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "Gateway\Gateway.csproj", "{DF9C221D-2CEA-43F5-8AB6-6E75440B632D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{2D807DAD-225E-4B71-994D-57F3A0B0156B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer\IdentityServer.csproj", "{4B7E2F11-4BA0-4C02-A460-CBC491DBDB0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,10 @@ Global
 		{DF9C221D-2CEA-43F5-8AB6-6E75440B632D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF9C221D-2CEA-43F5-8AB6-6E75440B632D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF9C221D-2CEA-43F5-8AB6-6E75440B632D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7E2F11-4BA0-4C02-A460-CBC491DBDB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7E2F11-4BA0-4C02-A460-CBC491DBDB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7E2F11-4BA0-4C02-A460-CBC491DBDB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7E2F11-4BA0-4C02-A460-CBC491DBDB0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +86,7 @@ Global
 		{60E885BB-C7D4-4E1D-9BBF-BDB18CE4D1E0} = {84ABFA3D-8160-495F-BD3F-F14B75683B72}
 		{6996A933-C390-4AF9-BCBB-96167917D3BF} = {16353FD3-26F8-4D68-961A-1EE916805009}
 		{DF9C221D-2CEA-43F5-8AB6-6E75440B632D} = {0088B400-47CB-404D-A2E2-6BEAE8BCB2D6}
+		{4B7E2F11-4BA0-4C02-A460-CBC491DBDB0E} = {2D807DAD-225E-4B71-994D-57F3A0B0156B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74C0D306-84DE-4718-8A9C-17FBAF0671F5}
