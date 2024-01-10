@@ -3,7 +3,7 @@
 namespace Order.Infrastructure
 {
     public class OrderDbContext : DbContext
-    {
+    {       
         public const string DEFAULT_SCHEMA = "ordering";
 
         public OrderDbContext(DbContextOptions<OrderDbContext> options) : base(options)

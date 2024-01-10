@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Order.Application.Dtos;
+using Order.Domain.OrderAggregate;
 
 namespace Order.Application.Mapping
 {
-    internal class CustomMapping
+    public class CustomMapping : Profile
     {
+        public CustomMapping()
+        {
+            CreateMap<Domain.OrderAggregate.Order, OrderDto>().ReverseMap();
+            CreateMap<OrderItem, OrderItemDto>().ReverseMap();
+            CreateMap<AddressDto, AddressDto>().ReverseMap();
+        }
     }
 }
