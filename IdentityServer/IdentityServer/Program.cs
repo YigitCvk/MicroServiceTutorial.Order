@@ -42,21 +42,24 @@ namespace IdentityServer
             try
             {
                 var host = CreateHostBuilder(args).Build();
-                //veri tabanı yoksa oluşturur uygulanmamaış migration varsa uygulama ayağa kalkarken oluşturur.
+
                 using (var scope = host.Services.CreateScope())
                 {
                     var serviceProvider = scope.ServiceProvider;
-                    var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
-                    dbContext.Database.Migrate();
 
-                    //User yoksa user oluştur.
+                    var applicationDbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
+
+                    applicationDbContext.Database.Migrate();
+
                     var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                    if (userManager.Users.Any())
+
+                    if (!userManager.Users.Any())
                     {
-                        userManager.CreateAsync(new ApplicationUser { UserName = "mundarettin", Email="user@user.com",City ="Adana"},"Password12*").Wait();
+                        userManager.CreateAsync(new ApplicationUser { UserName = "fcakiroglu16", Email = "f-cakiroglu@outlook.com", City = "Ankara" }, "Password12*").Wait();
                     }
                 }
-                    Log.Information("Starting host...");
+
+                Log.Information("Starting host...");
                 host.Run();
                 return 0;
             }
