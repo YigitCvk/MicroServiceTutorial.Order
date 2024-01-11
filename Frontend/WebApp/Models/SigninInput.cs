@@ -5,6 +5,7 @@ namespace WebApp.Models
 {
     public class SigninInput
     {
+        [Required]
         [Display(Name = "Email ")]
         public string Email { get; set; }
         [Display(Name = "Şifre ")]
