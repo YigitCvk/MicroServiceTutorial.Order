@@ -7,7 +7,9 @@ namespace WebApp.Services.Interfaces
     public interface IIdentityService
     {
         Task<Response<bool>> SignIn(SigninInput signinInput);
-        Task<TokenResponse> GetAccessTokenRefreshToken();
+
+        Task<TokenResponse> GetAccessTokenByRefreshToken();
+
         Task RevokeRefreshToken();
     }
 }
