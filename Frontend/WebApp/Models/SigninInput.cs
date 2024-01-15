@@ -1,16 +1,18 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.Models
 {
     public class SigninInput
     {
         [Required]
-        [Display(Name = "Email ")]
+        [Display(Name = "Email adresiniz")]
         public string Email { get; set; }
-        [Display(Name = "Şifre ")]
+
+        [Required]
+        [Display(Name = "Şifreniz")]
         public string Password { get; set; }
-        [Display(Name = "Beni Hatırla ")]
+
+        [Display(Name = "Beni hatırla")]
         public bool IsRemember { get; set; }
     }
 }

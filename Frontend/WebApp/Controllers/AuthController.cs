@@ -20,22 +20,24 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(SigninInput signinInput)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View();
             }
+
             var response = await _identityService.SignIn(signinInput);
+
             if (!response.IsSuccessful)
             {
                 response.Errors.ForEach(x =>
                 {
-                    ModelState.AddModelError(String.Empty,x);
-
+                    ModelState.AddModelError(String.Empty, x);
                 });
+
                 return View();
             }
-            return RedirectToAction(nameof(Index), "Home");
 
+            return RedirectToAction(nameof(Index), "Home");
         }
     }
 }

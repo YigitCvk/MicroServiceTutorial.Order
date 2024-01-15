@@ -7,7 +7,6 @@ using IdentityServer.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -20,6 +19,7 @@ namespace IdentityServer
 {
     public class Program
     {
+
         public static int Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
@@ -55,7 +55,7 @@ namespace IdentityServer
 
                     if (!userManager.Users.Any())
                     {
-                        userManager.CreateAsync(new ApplicationUser { UserName = "fcakiroglu16", Email = "f-cakiroglu@outlook.com", City = "Ankara" }, "Password12*").Wait();
+                        userManager.CreateAsync(new ApplicationUser{ UserName = "mundarettin", Email = "user@user.com", City = "Adana", PhoneNumber="5555555555" }, "Password12*").Wait();
                     }
                 }
 

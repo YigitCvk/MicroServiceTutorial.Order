@@ -16,15 +16,15 @@ namespace WebApp.Services
     {
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly ILogger _logger;
+      //  private readonly ILogger _logger;
         private readonly ClientSettings _clientSettings;
         private readonly ServiceApiSettings _serviceApiSettings;
 
-        public IdentityService(HttpClient httpClient, IHttpContextAccessor contextAccessor, ILogger logger, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
+        public IdentityService(HttpClient httpClient, IHttpContextAccessor contextAccessor, /*ILogger logger,*/ IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
         {
             _httpClient = httpClient;
             _contextAccessor = contextAccessor;
-            _logger = logger;
+            //_logger = logger;
             _clientSettings = clientSettings.Value;
             _serviceApiSettings = serviceApiSettings.Value;
         }
@@ -46,6 +46,7 @@ namespace WebApp.Services
                 Address = _serviceApiSettings.BaseUri,
                 Policy = new DiscoveryPolicy { RequireHttps = false }
             }); //Discovery endpoint e istek atar. https false (IdentityModel üzerinden atıyoruz)
+            
             if (disco.IsError)
             {
                 throw disco.Exception;
