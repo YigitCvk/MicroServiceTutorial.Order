@@ -26,13 +26,14 @@ namespace WebApp.Services
             _clientSettings = clientSettings.Value;
             _serviceApiSettings = serviceApiSettings.Value;
         }
+
         public async Task<TokenResponse> GetAccessTokenByRefreshToken()
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
                 Address = _serviceApiSettings.IdentityBaseUri,
                 Policy = new DiscoveryPolicy { RequireHttps = false }
-            }); //Discovery endpoint e istek atar. https false (IdentityModel üzerinden atıyoruz)
+            });
 
             if (disco.IsError)
             {
@@ -59,8 +60,9 @@ namespace WebApp.Services
             var authenticationTokens = new List<AuthenticationToken>()
             {
                 new AuthenticationToken{ Name=OpenIdConnectParameterNames.AccessToken,Value=token.AccessToken},
-                new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=token.RefreshToken},
-                new AuthenticationToken{ Name=OpenIdConnectParameterNames.ExpiresIn,Value= DateTime.Now.AddSeconds(token.ExpiresIn).ToString("o",CultureInfo.InvariantCulture)}
+                   new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=token.RefreshToken},
+
+                      new AuthenticationToken{ Name=OpenIdConnectParameterNames.ExpiresIn,Value= DateTime.Now.AddSeconds(token.ExpiresIn).ToString("o",CultureInfo.InvariantCulture)}
             };
 
             var authenticationResult = await _httpContextAccessor.HttpContext.AuthenticateAsync();
@@ -72,13 +74,14 @@ namespace WebApp.Services
 
             return token;
         }
-        public async Task RevokeRefreshToken()//üretilen refresh token i revoke etme işlemi
+
+        public async Task RevokeRefreshToken()
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
                 Address = _serviceApiSettings.IdentityBaseUri,
                 Policy = new DiscoveryPolicy { RequireHttps = false }
-            }); //Discovery endpoint e istek atar. https false (IdentityModel üzerinden atıyoruz)
+            });
 
             if (disco.IsError)
             {
@@ -97,6 +100,7 @@ namespace WebApp.Services
 
             await _httpClient.RevokeTokenAsync(tokenRevocationRequest);
         }
+
         public async Task<Response<bool>> SignIn(SigninInput signinInput)
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
@@ -152,8 +156,9 @@ namespace WebApp.Services
             authenticationProperties.StoreTokens(new List<AuthenticationToken>()
             {
                 new AuthenticationToken{ Name=OpenIdConnectParameterNames.AccessToken,Value=token.AccessToken},
-                new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=token.RefreshToken},
-                new AuthenticationToken{ Name=OpenIdConnectParameterNames.ExpiresIn,Value= DateTime.Now.AddSeconds(token.ExpiresIn).ToString("o",CultureInfo.InvariantCulture)}
+                   new AuthenticationToken{ Name=OpenIdConnectParameterNames.RefreshToken,Value=token.RefreshToken},
+
+                      new AuthenticationToken{ Name=OpenIdConnectParameterNames.ExpiresIn,Value= DateTime.Now.AddSeconds(token.ExpiresIn).ToString("o",CultureInfo.InvariantCulture)}
             });
 
             authenticationProperties.IsPersistent = signinInput.IsRemember;

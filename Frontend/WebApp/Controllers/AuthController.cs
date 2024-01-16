@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
 using WebApp.Services.Interfaces;
 
@@ -38,6 +40,12 @@ namespace WebApp.Controllers
             }
 
             return RedirectToAction(nameof(Index), "Home");
+        }
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _identityService.RevokeRefreshToken();
+            return RedirectToAction(nameof(HomeController.Index),"Home");
         }
     }
 }

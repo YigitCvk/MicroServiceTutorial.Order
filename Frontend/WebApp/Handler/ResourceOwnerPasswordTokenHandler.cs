@@ -18,7 +18,7 @@ namespace WebApp.Handler
             _identityService = identityService;
             _logger = logger;
         }
-     
+
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) //-->SendAsync metodu, HTTP isteği ve cevabını işlemek için kullanılır. Bu metot, zincirdeki bir sonraki işleyiciye devretme yeteneğine sahiptir.
         {
             var accessToken = await _contextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
@@ -41,8 +41,6 @@ namespace WebApp.Handler
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                var content = await response.Content.ReadAsStringAsync();
-                _logger.LogError($"Unauthorized request. Response content: {content}");
                 throw new UnAuthorizeException();
             }
 
@@ -50,4 +48,5 @@ namespace WebApp.Handler
         }
     }
 }
+
 
