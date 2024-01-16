@@ -72,7 +72,7 @@ namespace WebApp.Services
 
             return token;
         }
-        public async Task RevokeRefreshToken()
+        public async Task RevokeRefreshToken()//üretilen refresh token i revoke etme işlemi
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
