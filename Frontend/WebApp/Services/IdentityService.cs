@@ -54,6 +54,8 @@ namespace WebApp.Services
 
             if (token.IsError)
             {
+                Console.WriteLine($"Error: {token.Error}, Description: {token.ErrorDescription}");
+
                 return null;
             }
 

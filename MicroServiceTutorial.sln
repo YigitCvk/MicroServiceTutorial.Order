@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{59FF9FEE-E234-48D2-9B7B-82448F8BA047}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "Frontend\WebApp\WebApp.csproj", "{8426D06C-DD85-4A60-A7D5-668F5755572B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "Frontend\WebApp\WebApp.csproj", "{8426D06C-DD85-4A60-A7D5-668F5755572B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{349332F0-AE89-428A-A89D-9647B45B1392}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

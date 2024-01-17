@@ -5,23 +5,22 @@ using WebApp.Services.Interfaces;
 
 namespace WebApp.Handler
 {
-    public class ResourceOwnerPasswordTokenHandler : DelegatingHandler// --> NET'te HTTP taleplerini ve cevaplarını işlemek için kullanılan bir sınıftır.
+    public class ResourceOwnerPasswordTokenHandler : DelegatingHandler
     {
-
-        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IIdentityService _identityService;
         private readonly ILogger<ResourceOwnerPasswordTokenHandler> _logger;
 
-        public ResourceOwnerPasswordTokenHandler(IHttpContextAccessor contextAccessor, IIdentityService identityService, ILogger<ResourceOwnerPasswordTokenHandler> logger)
+        public ResourceOwnerPasswordTokenHandler(IHttpContextAccessor httpContextAccessor, IIdentityService identityService, ILogger<ResourceOwnerPasswordTokenHandler> logger)
         {
-            _contextAccessor = contextAccessor;
+            _httpContextAccessor = httpContextAccessor;
             _identityService = identityService;
             _logger = logger;
         }
 
-        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) //-->SendAsync metodu, HTTP isteği ve cevabını işlemek için kullanılır. Bu metot, zincirdeki bir sonraki işleyiciye devretme yeteneğine sahiptir.
+        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var accessToken = await _contextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+            var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
 
             request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -39,10 +38,10 @@ namespace WebApp.Handler
                 }
             }
 
-            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-            {
-                throw new UnAuthorizeException();
-            }
+            //if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            //{
+            //    throw new Exception();
+            //}
 
             return response;
         }

@@ -1,4 +1,7 @@
-﻿namespace WebApp.Exceptions
+﻿using System.Collections;
+using System.Runtime.Serialization;
+
+namespace WebApp.Exceptions
 {
     public class UnAuthorizeException : Exception
     {

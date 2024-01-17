@@ -2,6 +2,6 @@
 {
     public interface IClientCredentialTokenService
     {
-        Task<string> GetTokenAsync(string token);
+        Task<String> GetToken();
     }
 }

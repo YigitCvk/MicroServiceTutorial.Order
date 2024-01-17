@@ -1,6 +1,5 @@
 ﻿using IdentityModel.AspNetCore.AccessTokenManagement;
 using IdentityModel.Client;
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 using WebApp.Models;
 using WebApp.Services.Interfaces;
@@ -21,10 +20,10 @@ namespace WebApp.Services
             _clientAccessTokenCache = clientAccessTokenCache;
             _httpClient = httpClient;
         }
-
+      
         public async Task<string> GetToken()
         {
-            var currentToken = await _clientAccessTokenCache.GetAsync("WebClientToken");
+            var currentToken = await _clientAccessTokenCache.GetAsync("WebClientToken", new ClientAccessTokenParameters(), default(CancellationToken));
 
             if (currentToken != null)
             {
@@ -39,7 +38,7 @@ namespace WebApp.Services
 
             if (disco.IsError)
             {
-                throw disco.Exception;
+                throw new Exception($"Error while getting Discovery Document: {disco.Error}");
             }
 
             var clientCredentialTokenRequest = new ClientCredentialsTokenRequest
@@ -53,12 +52,13 @@ namespace WebApp.Services
 
             if (newToken.IsError)
             {
-                throw newToken.Exception;
+                throw new Exception($"Error while requesting Client Credentials Token: {newToken.Error}");
             }
 
-            await _clientAccessTokenCache.SetAsync("WebClientToken", newToken.AccessToken, newToken.ExpiresIn);
+            await _clientAccessTokenCache.SetAsync("WebClientToken", newToken.AccessToken, newToken.ExpiresIn, new ClientAccessTokenParameters(), default(CancellationToken));
 
             return newToken.AccessToken;
         }
+
     }
 }
